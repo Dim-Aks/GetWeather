@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Погода в городе {{ city }}</title>
+</head>
+<body>
+    <h1>Погода в городе {{ city }}</h1>
+    <a href="{% url 'index' %}">Вернуться к поиску</a>
+    <h2>Почасовой прогноз</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Дата и время</th>
+                <th>Температура (°C)</th>
+                <th>Относительная влажность воздуха (%)</th>
+                <th>Скорость ветра (km/h)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for time, temp, humidity, wind in weather %}
+                <tr>
+                    <td>{{ time|truncatechars:16 }}</td>
+                    <td>{{ temp }}</td>
+                    <td>{{ humidity }}</td>
+                    <td>{{ wind }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
